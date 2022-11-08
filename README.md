@@ -1,8 +1,3 @@
-# Important Notice
-The repo is open sourced here for any future update:
-https://github.com/Jianbin-IBM/ibm-cp4d-silver-bullet-deployment
-
-
 # Introduction
 "sbd-wml" stands for **S**ilver **B**ullet on **D**eployment with **W**atson **M**achine **L**earning.
 The aim is to deploy any python projects to IBM Cloud Pak for Data.
@@ -42,8 +37,8 @@ Run below command to deploy your python code package:
 python deploy_code_package.py --yamm-file [your_yaml_file] --test_run [True/False]
 ```
 
-- If set "test_run" to be True: run the job immediately after deployment
-- If set "test_run" to be False: only deploy the code package, but not run the job
+- If set "test_run" to be **True**: run the job immediately after deployment
+- If set "test_run" to be **False**: only deploy the code package, but not run the job
 
 Once successfully deployed, you will see below output(function_deployment_id will be different):
 
@@ -56,7 +51,7 @@ Successfully finished deployment creation, deployment_uid='6f5fcc90-2931-4d46-b6
 function_deployment_id = "6f5fcc90-2931-4d46-b683-cc67aded2624"
 ```
 
-If you set "test_run" to be True, you will see below output in addition(job_id will be different):
+If you set "test_run" to be **True**, you will see below output in addition(job_id will be different):
 
 ```job_id: "da717590-10b7-45df-a12b-6e2f2345fc06" successfully submitted```
 
