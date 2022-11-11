@@ -1,5 +1,5 @@
 # Introduction
-"sbd-wml" stands for **S**ilver **B**ullet on **D**eployment with **W**atson **M**achine **L**earning.
+"sbd-wml" stands for "**S**ilver **B**ullet on **D**eployment with **W**atson **M**achine **L**earning".
 The aim is to deploy any python projects to IBM Cloud Pak for Data.
 
 - Can be projects developed with Watson Studio in IBM Cloud Pak for Data
@@ -18,14 +18,14 @@ Also very much welcome your feedbacks and contributions! Thank you :)
 License: Apache License 2.0
 
 
-# Folder Structure
+# Code Structure
 - **code_example_to_be_deployed** : an example project code folder to be deployed.
 - **deployment** : APIs to deploy any python projects to Watson Machine Learning deployment space.
 
 
 # Usage
 
-Set your working directly under **deployment**.
+Set your working directory under **deployment**.
 
 ## Step 1: Configure YAML file
 Please make a copy of configuration_template.yaml and then modify the configuration accordingly.
