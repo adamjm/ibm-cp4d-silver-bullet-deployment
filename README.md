@@ -7,6 +7,7 @@ The aim is to deploy any python projects to IBM Cloud Pak for Data.
 - It supports CPD 3.5/4.0/4.5
 - It supports "batch job" well. "online" to be tested.
 - It can be used to enable CI/CD.
+- Support email notification when python scripts failed. 
 
 Author: Jianbin Tang, jbtang@au1.ibm.com.
 
@@ -74,7 +75,7 @@ If successful, you will see below output (job_id will be different):
   you need to promote or replica those you needed in deployment space with exactly same configuration. 
   
 - CPD3.5 needs complex workaround to connect data source connections in deployment space. 
-Hence currently we recommend getting connection credentials inside your projects, eg from a local configuration file and son.
+Hence currently we recommend getting connection credentials inside your projects, eg from a local configuration file and so on.
 This is not an issue for CPD4.x.
   
 - For "model" deployment, we have 2 options here
