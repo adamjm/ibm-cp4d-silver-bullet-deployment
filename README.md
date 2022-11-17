@@ -28,6 +28,12 @@ License: Apache License 2.0
 
 Set your working directory under **deployment**.
 
+Please make sure you have latest **ibm-watson-machine-learning** package. I have it verified in 1.0.253 onwards.
+
+```pip install ibm-watson-machine-learning --upgrade
+
+```
+
 ## Step 1: Configure YAML file
 Please make a copy of configuration_template.yaml and then modify the configuration accordingly.
 
@@ -35,7 +41,7 @@ Please make a copy of configuration_template.yaml and then modify the configurat
 Run below command to deploy your python code package:
 
 ```
-python deploy_code_package.py --yamm-file [your_yaml_file] --test_run [True/False]
+python deploy_code_package.py --yamm_file [your_yaml_file] --test_run [True/False]
 ```
 
 - If set "test_run" to be **True**: run the job immediately after deployment
@@ -63,7 +69,7 @@ Once the code package is successfully deployed, you can
 - Alternatively, you can run your job with below command, 
 which is specifically useful when you want to use an external scheduler (eg. Control M): 
 
-```python run_job.py --yamm-file [your_yaml_file]  --function_deployment_id=[function_deployment_id generated above]```
+```python run_job.py --yamm_file [your_yaml_file]  --function_deployment_id=[function_deployment_id generated above]```
 
 If successful, you will see below output (job_id will be different):
 
