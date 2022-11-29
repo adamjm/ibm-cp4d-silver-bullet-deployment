@@ -41,3 +41,6 @@ empatica-data-annotation/visualisation
 
 # Pycharm
 .idea
+
+# not track test folder
+test

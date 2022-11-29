@@ -1,5 +1,5 @@
-import os
-import traceback
+# This is an example code for applications without input and output, usually suitable for batch job application
+
 import warnings
 
 warnings.filterwarnings("ignore")
@@ -14,7 +14,7 @@ print('Pandas version =', pd.__version__)
 ############### Insert your main code ##################
 a = 1
 b = 4
-c = a + b
+c = a + b +d
 print('sum is', c)
 
 import time

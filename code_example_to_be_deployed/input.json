@@ -1,0 +1,8 @@
+{"input_data":[{
+        "fields":["AGE","SEXE"],
+        "values":[
+            [33,"F"],
+            [59,"F"],
+            [28,"M"]
+            ]
+        }]}

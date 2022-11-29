@@ -161,6 +161,7 @@ def deploy(wml_client, my_deployable_function, deployment_info):
     function_deployment_id = wml_client.deployments.get_uid(function_deployment_details)
     print('function_deployment_id = "%s"'%function_deployment_id)
 
+
     if deploy_mode == 'online':
         function_deployment_endpoint_url = wml_client.deployments.get_scoring_href(function_deployment_details)
         print('Deployment endpoint = ',function_deployment_endpoint_url)

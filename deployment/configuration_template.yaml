@@ -24,7 +24,7 @@ wml_credentials:
 
 prj_info:
   code_dir: ../code_example_to_be_deployed
-  main_file: main_no_email.py
+  main_file: main_no_input.py
 
 deployment_info:
   # self-defined function name
@@ -62,6 +62,11 @@ deployment_info:
   # For cpd3.5, it can be: 'default_py3.7'
   # For cpd4.x, it can be: 'runtime-22.1-py3.9'
   runtime: 'runtime-22.1-py3.9'
+
+  # if omit_stdout is True, no stdout info will be shown during a successful online/batch job execution
+  # for online application, we may want to omit the stdout to reduce the unnecessary traffic
+  # for batch application, recommend not to omit stdout since we can get job running output from stdout
+  omit_stdout: False
 
 #  If no smtp email function, please either comment out whole below section,
 #  or set "False" to "send_email_when_successful" and "send_email_when_fail"

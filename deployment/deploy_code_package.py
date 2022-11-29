@@ -121,15 +121,33 @@ if __name__ == '__main__':
 
         subprocess.run(["tar", "xzf", tar_file_name])
 
-        # def score(payload):
-        #     output = subprocess.run(["python", prj_info['main_file']], capture_output=True, text=True).stdout
-        #     return {"predictions": [{"values": [output]}]}
-
         def score(payload):
             # output = subprocess.run(["python", prj_info['main_file']], capture_output=True, text=True).stdout
 
+            import json
+            # save payload into a local JSON file named as input.json
+            input_json_file = 'input.json'
+            print('\n\rSaving payload into local JSON file:', input_json_file)
+            # Directly from dictionary
+            with open(input_json_file, 'w') as infile:
+                json.dump(payload, infile)
+
+            # create a dummy output.json
+            output_json_file = 'output.json'
+            with open(output_json_file, 'w') as outfile:
+                json.dump({'output': "none"}, outfile)
+
             p = subprocess.run(["python", prj_info['main_file']], capture_output=True, text=True)
             # print('exit status:', p.returncode)
+
+            # load output from a JSON file: output.json
+            print('\n\rLoading payload from local JSON file:', output_json_file)
+            # Directly from dictionary
+            with open(output_json_file, 'r') as outfile:
+                payload_output = json.load(outfile)
+                # payload_output_str = json.dumps(payload_output, indent=4, ensure_ascii=False)
+
+            print('output json=\n', payload_output)
 
             stdout = p.stdout
             # print('stdout:', stdout)
@@ -154,7 +172,7 @@ if __name__ == '__main__':
 
                     send_email(smtp_server, sender, receivers, message)
 
-                return {"predictions": [{"values": [stderr]}]}
+                values = {"stderr": stderr, "stdout": stdout}
 
             else:
 
@@ -174,8 +192,17 @@ if __name__ == '__main__':
 
                     send_email(smtp_server, sender, receivers, message)
 
-                return {"predictions": [{"values": [stdout]}]}
+                # for online application, we may want to omit the stdout to reduce the unnecessary traffic
+                omit_stdout = deployment_info['omit_stdout']
+                if omit_stdout:
+                    values = {"output": payload_output}
+                else:
+                    values = {"stdout": stdout, "output": payload_output}
 
+                #return {"predictions": [values]} # not work
+                #return {"predictions": [{"values": [stderr]}]} # work
+
+            return {"predictions": [{"values": [values]}]}  # work
         return score
 
 
@@ -203,29 +230,55 @@ if __name__ == '__main__':
     # remove tar file
 
 
+    # # step 4: run the job
+    # payload = {
+    #   "input_data": [
+    #     {
+    #       "fields": [],
+    #       "values": [1] # 1 is a dummy input that needed
+    #     }
+    #   ]
+    # }
+    #
+    #
+    # # below code is a reference if you want to schedule job externally using 3rd tool, eg Control M
+    # if test_run:
+    #     # run online application
+    #     # result = wml_client.deployments.score(function_deployment_id, payload)
+    #     # if "error" in result:
+    #     #     print(result["error"])
+    #     # else:
+    #     #     print(result)
+    #
+    #     # for batch job
+    #
+    #     job = wml_client.deployments.create_job(function_deployment_id, meta_props=payload)
+    #     job_id = wml_client.deployments.get_job_uid(job)
+    #     print('\n\rjob_id: "%s" successfully submitted'%job_id)
+    #     wml_client.deployments.get_job_details(job_id)
+
     # step 4: run the job
-    payload = {
-      "input_data": [
-        {
-          "fields": [],
-          "values": [1] # 1 is a dummy input that needed
-        }
-      ]
-    }
-
-
-    # below code is a reference if you want to schedule job externally using 3rd tool, eg Control M
     if test_run:
+        deploy_mode = deployment_info['deploy_mode']
+        payload = {
+            "input_data": [
+                {
+                    "fields": [],
+                    "values": [1]  # 1 is a dummy input that needed
+                }
+            ]
+        }
+
         # run online application
-        # result = wml_client.deployments.score(function_deployment_id, payload)
-        # if "error" in result:
-        #     print(result["error"])
-        # else:
-        #     print(result)
+        if deploy_mode == 'online':
+            result = wml_client.deployments.score(function_deployment_id, payload)
+            print('result=\n', result)
 
         # for batch job
+        # below code is a reference if you want to schedule job externally using 3rd tool, eg Control M
+        else:
+            job = wml_client.deployments.create_job(function_deployment_id, meta_props=payload)
+            job_id = wml_client.deployments.get_job_uid(job)
+            print('\n\rjob_id: "%s" successfully submitted' % job_id)
+            wml_client.deployments.get_job_details(job_id)
 
-        job = wml_client.deployments.create_job(function_deployment_id, meta_props=payload)
-        job_id = wml_client.deployments.get_job_uid(job)
-        print('\n\rjob_id: "%s" successfully submitted'%job_id)
-        wml_client.deployments.get_job_details(job_id)
