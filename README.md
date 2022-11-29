@@ -13,7 +13,6 @@ Author: Jianbin Tang, jbtang@au1.ibm.com.
 
 Feel free to "fork" it! 
 If you like it, please "watch" and "star" the project. 
-
 Also very much welcome your feedbacks and contributions! Thank you :)
 
 License: Apache License 2.0
@@ -41,7 +40,7 @@ Please make a copy of configuration_template.yaml and then modify the configurat
 Run below command to deploy your python code package:
 
 ```
-python deploy_code_package.py --yamm_file [your_yaml_file] --test_run [True/False]
+python deploy_code_package.py --yaml_file [your_yaml_file] --test_run [True/False]
 ```
 
 - If set "test_run" to be **True**: run the job immediately after deployment
