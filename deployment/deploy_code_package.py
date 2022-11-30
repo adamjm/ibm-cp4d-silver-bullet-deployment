@@ -231,34 +231,6 @@ if __name__ == '__main__':
     # to do --- clean
     # remove tar file
 
-
-    # # step 4: run the job
-    # payload = {
-    #   "input_data": [
-    #     {
-    #       "fields": [],
-    #       "values": [1] # 1 is a dummy input that needed
-    #     }
-    #   ]
-    # }
-    #
-    #
-    # # below code is a reference if you want to schedule job externally using 3rd tool, eg Control M
-    # if test_run:
-    #     # run online application
-    #     # result = wml_client.deployments.score(function_deployment_id, payload)
-    #     # if "error" in result:
-    #     #     print(result["error"])
-    #     # else:
-    #     #     print(result)
-    #
-    #     # for batch job
-    #
-    #     job = wml_client.deployments.create_job(function_deployment_id, meta_props=payload)
-    #     job_id = wml_client.deployments.get_job_uid(job)
-    #     print('\n\rjob_id: "%s" successfully submitted'%job_id)
-    #     wml_client.deployments.get_job_details(job_id)
-
     # step 4: run the job
     if test_run:
         deploy_mode = deployment_info['deploy_mode']
