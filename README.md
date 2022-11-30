@@ -96,9 +96,18 @@ Once the code package is successfully deployed, you can
 
 ```python run_job.py --yamm_file [your_yaml_file]  --function_deployment_id=[function_deployment_id generated above]```
 
-If successful, you will see below output (job_id will be different):
+For "batch job" deployment, 
+you will see below output in addition(job_id will be different):
 
 ```job_id: "da717590-10b7-45df-a12b-6e2f2345fc06" successfully submitted```
+
+
+For "online" deployment, 
+you will see below output in addition(job_id will be different):
+```
+result=
+ {'predictions': [{'values': [{'stdout': "\n\nLoading payload from local JSON file: input.json\ninput json=\n {'input_data': [{'fields': [], 'values': [1]}]}\n\n\nSaving payload into local JSON file: output.json\n", 'output': {'input_data': [{'fields': [], 'values': [1]}]}}]}]}
+```
 
 ## How to input/output data
 There are multiple options to supply input. 

@@ -14,7 +14,7 @@ print('Pandas version =', pd.__version__)
 ############### Insert your main code ##################
 a = 1
 b = 4
-c = a + b +d
+c = a + b
 print('sum is', c)
 
 import time
