@@ -1,7 +1,7 @@
 # This is an example code for applications with input and output, usually needed for online application
 # You must load your input from "input.json" from the same folder that main python file sit with.
 # You must also dump your output to "output.json" to the same folder that main python file sit with.
-# If you feel necessary, feel free to modify the code to make input/output filename and location configurable.
+# If necessary, feel free to modify the code to make input/output filename and location configurable.
 
 import json
 

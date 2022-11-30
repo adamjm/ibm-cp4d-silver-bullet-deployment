@@ -59,15 +59,17 @@ def upload_code_2_deployment_space(wml_client, prj_info):
         if f in assets_dict: wml_client.data_assets.delete(assets_dict[f])
 
         # upload files
+        print('\n\rStart to upload Code Package: ', tar_file_name)
         wml_client.data_assets.create(name=f, file_path=f)
-        print('\n\rCode Package: ', tar_file_name, 'uploaded to deployment space successfully')
+        print('Code Package: ', tar_file_name, 'uploaded to deployment space successfully')
         
         
 def wml_login(wml_credentials):
     url = wml_credentials['url']
-    version = wml_credentials['version']
+    # version = wml_credentials['version']
     wml_client = APIClient(wml_credentials)
-    print("\n\rWML login successfully: CPD URL=",url,', CPD version=', version)
+    #print("\n\rWML login successfully: CPD URL=",url,', CPD version=', version)
+    print("\n\rWML login successfully: CPD URL=", url)
 
     return wml_client
 

@@ -8,7 +8,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Deploy Code Packages')
 
     parser.add_argument('--yaml_file', '-y', type=str,
-                        default='configuration_cpd45_dbaccess.yaml')
+                        default='configuration_cpdaas_batch.yaml')
 
     parser.add_argument(
         '--test_run', '-t',
@@ -53,22 +53,24 @@ if __name__ == '__main__':
     print("\n\rSet space id successfully:", space_id)
 
     # From cpd 4.x, deployment function can get the token inside. Hence we don't need password as parameters anymore.
-    version = wml_credentials['version']
-    if version[0]>'3':
-        # remove credentials to avoid disclosure of the password.
-        if "password" in wml_credentials:
-            del wml_credentials['password']
+    if "version" in wml_credentials:
+        version = wml_credentials['version']
+        if version[0]>'3':
+            # remove credentials to avoid disclosure of the password.
+            if "password" in wml_credentials:
+                del wml_credentials['password']
 
     # This is a generator code needed by CP4D to run your code. In most cases, you don't have to modify it.
     def my_deployable_function(wml_credentials=wml_credentials, deployment_info=deployment_info, prj_info=prj_info,
                                email_setting=email_setting):
 
         # get USER_ACCESS_TOKEN directly without leaking token, username and password in the deployment function
-        version = wml_credentials['version']
-        if version[0] > '3':
-            import os
-            user_token = os.environ["USER_ACCESS_TOKEN"]
-            wml_credentials['token'] = user_token
+        if "version" in wml_credentials:
+            version = wml_credentials['version']
+            if version[0] > '3':
+                import os
+                user_token = os.environ["USER_ACCESS_TOKEN"]
+                wml_credentials['token'] = user_token
 
         if email_setting:
             send_email_when_successful = email_setting['send_email_when_successful']

@@ -1,3 +1,7 @@
+# wml_credentials will be different for CPD as platform and CPD as a Service(CPDaas)
+# If deploy to CPDaas, please fully comment out option 1 and uncomment option 2.
+
+## Option 1) for CPD as platform
 wml_credentials:
   # Option 1) username and password
   username: jbtang@au1.ibm.com
@@ -21,6 +25,21 @@ wml_credentials:
   instance_id: openshift
   url: https://dse-cpd45-cluster1.cpolab.ibm.com/
   version: '4.5'
+
+## Option 2) for CPD as a service provided by https://dataplatform.cloud.ibm.com/
+## A good learning video in: https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/ml-samples-overview.html
+#wml_credentials:
+#
+#  #  How to find URL, refer to https://cloud.ibm.com/apidocs/machine-learning#endpoint-url, you will find:
+#  #  Dallas: https://us-south.ml.cloud.ibm.com
+#  #  London - https://eu-gb.ml.cloud.ibm.com
+#  #  Frankfurt - https://eu-de.ml.cloud.ibm.com
+#  #  Tokyo - https://jp-tok.ml.cloud.ibm.com
+#  #url: https://us-south.ml.cloud.ibm.com
+#  url: https://jp-tok.ml.cloud.ibm.com
+#
+#  # Authentication: https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/ml-authentication.html
+#  apikey: mPhmEnNRY4MAKwCjtKNItdFo2NgbVwiJhb8GjZhub5Yy
 
 prj_info:
   code_dir: ../code_example_to_be_deployed
