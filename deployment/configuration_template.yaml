@@ -3,11 +3,11 @@
 
 ## Option 1) for CPD as platform
 wml_credentials:
-  # Option 1) username and password
+  # Method 1) username and password
   username: jbtang@au1.ibm.com
   password: yourpassword
 
-  # Option 2) using access_token instead of username/password
+  # Method 2) using access_token instead of username/password
   # how to generate access_token, refer to:
   # CPD3.5: https://www.ibm.com/docs/en/cloud-paks/cp-data/3.5.0?topic=overview-authentication
   # CPD4.0: https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=resources-generating-authorization-token
@@ -15,7 +15,7 @@ wml_credentials:
   # Also in CPD Watson Studio, simply run: user_token = os.environ["USER_ACCESS_TOKEN"]
   # "token": user_token
 
-  # option 3) using apikey instead of username/password
+  # Method 3) using apikey instead of username/password
   # how to generate apikey, refer to:
   # CPD3.5: https://www.ibm.com/docs/en/cloud-paks/cp-data/3.5.0?topic=started-generating-api-keys#api-keys__platform
   # CPD4.0: https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=steps-generating-api-keys
@@ -60,9 +60,9 @@ deployment_info:
   force_2_update: True   # default value: False
 
   # 2 different deploy_modes:
-  # online: online API
-  # batch_job: scheduled upon requests
-  deploy_mode: batch_job  # default value: batch_job
+  # 1) online: online API
+  # 2) batch_job: scheduled upon requests
+  deploy_mode: batch_job
 
   # hardware spec: refer to:https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/deploy-batch-details.html
   # Size 	Hardware definition
@@ -82,10 +82,10 @@ deployment_info:
   # For cpd4.x, it can be: 'runtime-22.1-py3.9'
   runtime: 'runtime-22.1-py3.9'
 
-  # if omit_stdout is True, no stdout info will be shown during a successful online/batch job execution
-  # for online application, we may want to omit the stdout to reduce the unnecessary traffic
-  # for batch application, recommend not to omit stdout since we can get job running output from stdout
-  omit_stdout: False
+  # if enable_stdout is False, no stdout info will be shown during a successful online/batch job execution
+  # for online application, we may want to disable the stdout to reduce the unnecessary traffic
+  # for batch application, recommend to enable stdout since we can get job running output from stdout
+  enable_stdout: True
 
 #  If no smtp email function, please either comment out whole below section,
 #  or set "False" to "send_email_when_successful" and "send_email_when_fail"

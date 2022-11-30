@@ -1,5 +1,5 @@
 # Introduction
-"sbd-wml" stands for "**S**ilver **B**ullet on **D**eployment with **W**atson **M**achine **L**earning".
+**"sbd-wml"** stands for "**S**ilver **B**ullet on **D**eployment with **W**atson **M**achine **L**earning".
 The aim is to deploy any python projects to IBM Cloud Pak for Data (CPD).
 
 - Can be projects developed with Watson Studio in IBM Cloud Pak for Data
@@ -15,10 +15,11 @@ The aim is to deploy any python projects to IBM Cloud Pak for Data (CPD).
 
 Author: Jianbin Tang, jbtang@au1.ibm.com.
 
-Feel free to "fork" it! And very much welcome your feedbacks and contributions. Thank you!
 
-License: Apache License 2.0
-Not a license requirement, but if you like it and used it, appreciate you "watch" and "star" the project :) 
+# License
+- Apache License 2.0.
+- Not a license requirement, but if you like it and used it, appreciate you "watch" and "star" the project :) 
+- Feel free to fork it! And welcome your feedbacks and contributions. Thank you!
 
 # Code Structure
 - **code_example_to_be_deployed** : an example project code folder to be deployed.
@@ -96,7 +97,7 @@ There are multiple options to supply input.
 - Option 2: You can also supply input externally. 
   It is very common for "online" deployment to generate some output based on the input, eg prediction. 
   In this case, your python project will read from "input.json" file, then write to "output.json".
-  [main_with_input_output.py](./code_example_to_be_deployed/main_with_input_output.py) provided an exemplary code
+  [main_with_input_output.py](./code_example_to_be_deployed/main_with_input_output.py) provided an exemplary code.
 
 ## Additional Notes
 

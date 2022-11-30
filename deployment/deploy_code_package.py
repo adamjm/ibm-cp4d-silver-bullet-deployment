@@ -195,11 +195,11 @@ if __name__ == '__main__':
                     send_email(smtp_server, sender, receivers, message)
 
                 # for online application, we may want to omit the stdout to reduce the unnecessary traffic
-                omit_stdout = deployment_info['omit_stdout']
-                if omit_stdout:
-                    values = {"output": payload_output}
-                else:
+                enable_stdout = deployment_info['enable_stdout']
+                if enable_stdout:
                     values = {"stdout": stdout, "output": payload_output}
+                else:
+                    values = {"output": payload_output}
 
                 #return {"predictions": [values]} # not work
                 #return {"predictions": [{"values": [stderr]}]} # work
