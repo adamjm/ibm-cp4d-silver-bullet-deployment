@@ -19,22 +19,6 @@ if __name__ == '__main__':
     # setting function_deployment_id which is obtained from a successful deployment
     function_deployment_id = args.function_deployment_id
 
-    # # Read YAML file
-    # with open(args.yaml_file, 'r') as stream:
-    #     configuration = yaml.safe_load(stream)
-    #
-    # wml_credentials = configuration['wml_credentials']
-    # deployment_info = configuration['deployment_info']
-    # prj_info = configuration['prj_info']
-    # email_setting = configuration['email_setting']
-    #
-    # # login to wml
-    # from deployment_api import wml_login
-    # wml_client = wml_login(wml_credentials)
-    # # set space id
-    # space_id = deployment_info['space_id']
-    # wml_client.set.default_space(space_id)
-
     # Read YAML file
     print('\n\rLoading configuration yaml file:', yaml_file)
     with open(yaml_file, 'r') as stream:
@@ -55,6 +39,8 @@ if __name__ == '__main__':
 
 
     # step 4: run the job
+    deploy_mode = deployment_info['deploy_mode']
+
     payload = {
       "input_data": [
         {
@@ -65,14 +51,14 @@ if __name__ == '__main__':
     }
 
     # run online application
-    # result = wml_client.deployments.score(function_deployment_id, payload)
-    # if "error" in result:
-    #     print(result["error"])
-    # else:
-    #     print(result)
+    if deploy_mode == 'online':
+        result = wml_client.deployments.score(function_deployment_id, payload)
+        print('result=\n', result)
 
     # for batch job
-    job = wml_client.deployments.create_job(function_deployment_id, meta_props=payload)
-    job_id = wml_client.deployments.get_job_uid(job)
-    print('\n\rjob_id: "%s" successfully submitted'%job_id)
-    wml_client.deployments.get_job_details(job_id)
+    # below code is a reference if you want to schedule job externally using 3rd tool, eg Control M
+    else:
+        job = wml_client.deployments.create_job(function_deployment_id, meta_props=payload)
+        job_id = wml_client.deployments.get_job_uid(job)
+        print('\n\rjob_id: "%s" successfully submitted' % job_id)
+        wml_client.deployments.get_job_details(job_id)

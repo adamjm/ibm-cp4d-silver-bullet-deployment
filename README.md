@@ -2,24 +2,29 @@
 **"sbd-wml"** stands for "**S**ilver **B**ullet on **D**eployment with **W**atson **M**achine **L**earning".
 The aim is to deploy any python projects to IBM Cloud Pak for Data (CPD).
 
-- Can be projects developed with Watson Studio in IBM Cloud Pak for Data
-- Can be projects developed outside of Watson Studio
-- Support CPD 3.5/4.0/4.5
+- Support projects developed with Watson Studio in IBM Cloud Pak for Data.
+- Support projects developed outside of Watson Studio.
+- Support CPD 3.5/4.0/4.5.
 - Support "batch job"  and "online" deployment.
-- Support CPD as a platform and also CPD as a service. 
-- It can be used to enable CI/CD.
-- When there is accessible SMTP server within CPD, email notification can be enabled. 
-  It is particularly useful when python scripts failed due to bug or imperfect data.
-- Export **stderr** and **stdout** to job logs, you know what happened in detail. 
+- Support CPD as a platform and also CPD as a service.
 - Support all ML frameworks, as long as it can be done with python.
+- It can be used to enable CI/CD.
+- If there is an accessible SMTP server within CPD, email notification can be enabled. 
+  It is particularly useful when python scripts failed due to bugs or imperfect data.
+- Contain **stderr** and **stdout** in job logs, so you know what happened in detail. 
+
 
 Author: Jianbin Tang, jbtang@au1.ibm.com.
 
 
 # License
 - Apache License 2.0.
-- Not a license requirement, but if you like it and used it, appreciate you "watch" and "star" the project :) 
-- Feel free to fork it! And welcome your feedbacks and contributions. Thank you!
+- Feel free to fork it!   
+- Not a license requirement, but if you like it or used it, 
+  appreciate your "watch" and "star" the project :) 
+- Welcome your feedbacks and contributions. 
+  
+Thank you!
 
 # Code Structure
 - **code_example_to_be_deployed** : an example project code folder to be deployed.
@@ -30,14 +35,17 @@ Author: Jianbin Tang, jbtang@au1.ibm.com.
 
 Set your working directory under **deployment**.
 
-Please make sure you have latest **ibm-watson-machine-learning** package. I have it verified in 1.0.253 onwards.
+Please make sure you have latest **ibm-watson-machine-learning** package. 
+This tool is verified in 1.0.253 onwards.
 
 ```
 pip install ibm-watson-machine-learning --upgrade
 ```
 
 ## Step 1: Configure YAML file
-Please make a copy of configuration_template.yaml and then modify the configuration accordingly.
+Please make a copy of configuration_template.yaml and then modify the configuration accordingly. 
+
+I tried to make the yaml file self-explainable, please let me know if there is any confusing part!
 
 ## Step 2: Deploy!
 Run below command to deploy your python code package:
@@ -65,12 +73,14 @@ For "online" deployment, a "Deployment endpoint" will be generated:
 Deployment endpoint =  https://cpd-cp4data.cluster-adp-ac369665a3d2e9405656d188474ca7f8-0000.eu-de.containers.appdomain.cloud/ml/v4/deployments/3f9536e8-2a8f-4726-8d7d-8c91d2c39eb1/predictions
 ```
 
-For "batch job" deployment, if you set "test_run" to be **True**, you will see below output in addition(job_id will be different):
+For "batch job" deployment, if you set "test_run" to be **True**, 
+you will see below output in addition(job_id will be different):
 
 ```job_id: "da717590-10b7-45df-a12b-6e2f2345fc06" successfully submitted```
 
 
-For "online" deployment, if you set "test_run" to be **True**, you will see below output in addition(job_id will be different):
+For "online" deployment, if you set "test_run" to be **True**, 
+you will see below output in addition(job_id will be different):
 ```
 result=
  {'predictions': [{'values': [{'stdout': "\n\nLoading payload from local JSON file: input.json\ninput json=\n {'input_data': [{'fields': [], 'values': [1]}]}\n\n\nSaving payload into local JSON file: output.json\n", 'output': {'input_data': [{'fields': [], 'values': [1]}]}}]}]}
@@ -79,9 +89,10 @@ result=
 ## Step 3: Run Job
 
 Once the code package is successfully deployed, you can
-- Either use CPD WebUI to schedule your job. More in: https://www.ibm.com/docs/en/cloud-paks/cp-data/4.5.x?topic=assets-creating-deployment-job
+- Either use CPD WebUI to schedule your job. 
+  More in: https://www.ibm.com/docs/en/cloud-paks/cp-data/4.5.x?topic=assets-creating-deployment-job
 - Alternatively, you can run your job with below command, 
-which is specifically useful when you want to use an external scheduler (eg. Control M): 
+  which is particularly useful when you want to use an external scheduler (eg. Control M): 
 
 ```python run_job.py --yamm_file [your_yaml_file]  --function_deployment_id=[function_deployment_id generated above]```
 

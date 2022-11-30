@@ -39,7 +39,7 @@ wml_credentials:
 #  url: https://jp-tok.ml.cloud.ibm.com
 #
 #  # Authentication: https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/ml-authentication.html
-#  apikey: mPhmEnNRY4MAKwCjtKNItdFo2NgbVwiJhb8GjZhub5Yy
+#  apikey: mPhmEnNRY4MAKwCjtKNItdFo2NgbVwiJhb8GjZhubdsafd
 
 prj_info:
   code_dir: ../code_example_to_be_deployed
