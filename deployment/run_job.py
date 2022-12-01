@@ -41,14 +41,23 @@ if __name__ == '__main__':
     # step 4: run the job
     deploy_mode = deployment_info['deploy_mode']
 
-    payload = {
-      "input_data": [
-        {
-          "fields": [],
-          "values": [1] # 1 is a dummy input that needed
-        }
-      ]
-    }
+    # payload = {
+    #   "input_data": [
+    #     {
+    #       "fields": [],
+    #       "values": [1] # 1 is a dummy input that needed
+    #     }
+    #   ]
+    # }
+
+    payload = {"input_data": [{
+        "fields": ["AGE", "SEXE"],
+        "values": [
+            [33, "F"],
+            [59, "F"],
+            [28, "M"]
+        ]
+    }]}
 
     # run online application
     if deploy_mode == 'online':
