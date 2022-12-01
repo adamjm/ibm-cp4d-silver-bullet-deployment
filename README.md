@@ -115,9 +115,14 @@ There are multiple options to supply input.
 - Option 1: Read input and/or write output directly within your python project. 
   Input/output can be files, tables from databases, external APIs and so on.
 - Option 2: You can also supply input externally. 
-  It is very common for "online" deployment to generate some output based on the input, eg prediction. 
-  In this case, your python project will read from "input.json" file, then write to "output.json".
-  [main_with_input_output.py](./code_example_to_be_deployed/main_with_input_output.py) provided an exemplary code.
+  It is very common for "online" deployment to generate some output based on the input, eg prediction.
+  
+  1) [main_with_input_output.py](./code_example_to_be_deployed/main_with_input_output.py) provided an exemplary code
+     to process input JSON from stdin and also write output JSON to stderr.
+  2) [run_main_with_input_output.py](./code_example_to_be_deployed/run_main_with_input_output.py) 
+     provided an exemplary code to run 
+     [main_with_input_output.py](./code_example_to_be_deployed/main_with_input_output.py)
+     If worked fine, your deployment in CPD will work as well.
 
 ## Additional Notes
 

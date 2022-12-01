@@ -182,7 +182,7 @@ if __name__ == '__main__':
                 try:
                     jsondata = ast.literal_eval(stderr)
                 except Exception as e:
-                    jsondata = {"info": ["no JSON found on output: ", stderr]}
+                    jsondata = {"info": ["JSON String not found on output: ", stderr]}
 
                 # for online application, we may want to omit the stdout to reduce the unnecessary traffic
                 enable_stdout = deployment_info['enable_stdout']
