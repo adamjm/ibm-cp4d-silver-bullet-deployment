@@ -127,34 +127,19 @@ if __name__ == '__main__':
             # output = subprocess.run(["python", prj_info['main_file']], capture_output=True, text=True).stdout
 
             import json
-            # save payload into a local JSON file named as input.json
-            input_json_file = 'input.json'
-            print('\n\rSaving payload into local JSON file:', input_json_file)
-            # Directly from dictionary
-            with open(input_json_file, 'w') as infile:
-                json.dump(payload, infile)
-
-            # create a dummy output.json
-            output_json_file = 'output.json'
-            with open(output_json_file, 'w') as outfile:
-                json.dump({'output': "none"}, outfile)
-
-            p = subprocess.run(["python", prj_info['main_file']], capture_output=True, text=True)
-            # print('exit status:', p.returncode)
-
-            # load output from a JSON file: output.json
-            print('\n\rLoading payload from local JSON file:', output_json_file)
-            # Directly from dictionary
-            with open(output_json_file, 'r') as outfile:
-                payload_output = json.load(outfile)
-                # payload_output_str = json.dumps(payload_output, indent=4, ensure_ascii=False)
-
-            print('output json=\n', payload_output)
+            import ast
+            json_string = json.dumps(payload, ensure_ascii=False)
+            p = subprocess.run(["python", '-i', prj_info['main_file']], capture_output=True, input=json_string,
+                               text=True)
 
             stdout = p.stdout
             # print('stdout:', stdout)
             stderr = p.stderr
-            # print('stdout:', stderr)
+            # print('stderr:', stderr)
+
+            # need to remove ending dummy output
+            idx = stderr.find('>>>', 0)
+            stderr = stderr[:idx]
 
             if p.returncode:
 
@@ -194,15 +179,17 @@ if __name__ == '__main__':
 
                     send_email(smtp_server, sender, receivers, message)
 
+                try:
+                    jsondata = ast.literal_eval(stderr)
+                except Exception as e:
+                    jsondata = {"info": ["no JSON found on output: ", stderr]}
+
                 # for online application, we may want to omit the stdout to reduce the unnecessary traffic
                 enable_stdout = deployment_info['enable_stdout']
                 if enable_stdout:
-                    values = {"stdout": stdout, "output": payload_output}
+                    values = {"stdout": stdout, "output": jsondata}
                 else:
-                    values = {"output": payload_output}
-
-                #return {"predictions": [values]} # not work
-                #return {"predictions": [{"values": [stderr]}]} # work
+                    values = {"output": stderr}
 
             return {"predictions": [{"values": [values]}]}  # work
         return score
