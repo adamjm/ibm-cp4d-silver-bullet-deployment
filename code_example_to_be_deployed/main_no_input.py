@@ -1,5 +1,11 @@
 # This is an example code for applications without input and output, usually suitable for batch job application
 
+# In deployment space, there might be missing python libraries. If so, the first thing is to install missing libraries
+# Below is an example to install ibm-watson-machine-learning
+import subprocess
+# output = subprocess.run(["pip3", "install", "ibm-watson-machine-learning", "--upgrade"], capture_output=True, text=True).stdout
+# print(output)
+
 import warnings
 
 warnings.filterwarnings("ignore")

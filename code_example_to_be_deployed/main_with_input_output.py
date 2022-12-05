@@ -3,12 +3,16 @@
 # Your output must be in JSON format and you must also dump your output JSON to stderr which will be processed.
 
 
+# In deployment space, there might be missing python libraries. If so, the first thing is to install missing libraries
+# Below is an example to install ibm-watson-machine-learning
+import subprocess
+# output = subprocess.run(["pip3", "install", "ibm-watson-machine-learning", "--upgrade"], capture_output=True, text=True).stdout
+# print(output)
 
 import os
 import warnings
 import json
 import sys
-import select
 
 warnings.filterwarnings("ignore")
 

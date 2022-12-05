@@ -15,7 +15,7 @@ payload = {"input_data":[{
 json_string=json.dumps(payload, ensure_ascii=False)
 
 # run your main python program with input from stdio, to mimic the behavior of CP4D deployment
-p = run(["python", '-i', 'main_with_input_output.py'], capture_output=True, input=json_string, text=True)
+p = run(["python", 'main_with_input_output.py'], capture_output=True, input=json_string, text=True)
 
 # normal print from stdout
 run_log = p.stdout
@@ -25,10 +25,6 @@ print(run_log)
 
 # output JSON saved in stderr
 output_json = p.stderr
-# remove ending dummy output
-idx = output_json.find('>>>', 0)
-output_json = output_json[:idx]
-# print('\noutput_json:\n', output_json)
 
 # confirm output is in JSON format
 print('\nOutput JSON status:')

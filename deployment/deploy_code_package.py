@@ -1,5 +1,8 @@
-# import os
-# os.system('pip install ibm-watson-machine-learning --upgrade')
+# for those using older ibm_watson_machine_learning version, please update use below code
+import subprocess
+# output = subprocess.run(["pip3", "install", "ibm-watson-machine-learning", "--upgrade"], capture_output=True, text=True).stdout
+# print(output)
+
 import argparse
 import yaml
 import ast
@@ -64,11 +67,18 @@ if __name__ == '__main__':
     def my_deployable_function(wml_credentials=wml_credentials, deployment_info=deployment_info, prj_info=prj_info,
                                email_setting=email_setting):
 
+        import os
+        import subprocess
+
+        # for those using older ibm_watson_machine_learning version, please update use below code
+        # output = subprocess.run(["pip3", "install", "ibm-watson-machine-learning", "--upgrade"], capture_output=True,
+        #                         text=True).stdout
+        # print(output)
+
         # get USER_ACCESS_TOKEN directly without leaking token, username and password in the deployment function
         if "version" in wml_credentials:
             version = wml_credentials['version']
             if version[0] > '3':
-                import os
                 user_token = os.environ["USER_ACCESS_TOKEN"]
                 wml_credentials['token'] = user_token
 
@@ -81,9 +91,6 @@ if __name__ == '__main__':
         else:
             send_email_when_successful = False
             send_email_when_fail = False
-
-        import subprocess
-        import os
 
         from ibm_watson_machine_learning import APIClient
         wml_client = APIClient(wml_credentials)
