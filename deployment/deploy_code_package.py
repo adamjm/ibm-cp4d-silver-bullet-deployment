@@ -129,7 +129,7 @@ if __name__ == '__main__':
             import json
             import ast
             json_string = json.dumps(payload, ensure_ascii=False)
-            p = subprocess.run(["python", '-i', prj_info['main_file']], capture_output=True, input=json_string,
+            p = subprocess.run(["python", prj_info['main_file']], capture_output=True, input=json_string,
                                text=True)
 
             stdout = p.stdout
@@ -137,9 +137,9 @@ if __name__ == '__main__':
             stderr = p.stderr
             # print('stderr:', stderr)
 
-            # need to remove ending dummy output
-            idx = stderr.find('>>>', 0)
-            stderr = stderr[:idx]
+            # # need to remove ending dummy output
+            # idx = stderr.find('>>>', 0)
+            # stderr = stderr[:idx]
 
             if p.returncode:
 
@@ -159,7 +159,7 @@ if __name__ == '__main__':
 
                     send_email(smtp_server, sender, receivers, message)
 
-                values = {"stderr": stderr, "stdout": stdout}
+                output_json = {"stderr": stderr, "stdout": stdout}
 
             else:
 
@@ -187,11 +187,18 @@ if __name__ == '__main__':
                 # for online application, we may want to omit the stdout to reduce the unnecessary traffic
                 enable_stdout = deployment_info['enable_stdout']
                 if enable_stdout:
-                    values = {"stdout": stdout, "output": jsondata}
+                    output_json = jsondata
+                    jsondata.update({"stdout": stdout})
                 else:
-                    values = {"output": stderr}
+                    output_json = jsondata
 
-            return {"predictions": [{"values": [values]}]}  # work
+            deploy_mode = deployment_info['deploy_mode']
+            if deploy_mode == 'online':
+                return {"predictions": [output_json]}  # work
+            else:
+                # somehow batchmode will never finish with above formart, but below works
+                return {"predictions": [{"values": [output_json]}]}
+
         return score
 
 
@@ -207,7 +214,7 @@ if __name__ == '__main__':
     #         "values": []
     #     }]
     # }
-    # function_result = my_deployable_function(wml_credentials, space_id, prj_info)(payload)
+    # function_result = my_deployable_function(wml_credentials, deployment_info, prj_info, email_setting)(payload)
     # print(function_result)
 
     # step 3: deploy
