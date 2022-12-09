@@ -1,6 +1,7 @@
 # Introduction
-**"sbd-wml"** stands for "**S**ilver **B**ullet on **D**eployment with **W**atson **M**achine **L**earning".
-The aim is to deploy any python projects to IBM Cloud Pak for Data (CPD).
+ "**S**ilver **B**ullet on **D**eployment with **W**atson **M**achine **L**earning" 
+ aims with deploying any python projects to any IBM Cloud Pak for Data (CPD) system. 
+ With simplified interface and clear yaml example, users can be enabled in several minutes.
 
 - Support projects developed with Watson Studio in IBM Cloud Pak for Data.
 - Support projects developed outside of Watson Studio.
