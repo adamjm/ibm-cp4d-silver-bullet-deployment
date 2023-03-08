@@ -24,7 +24,7 @@ wml_credentials:
 
   instance_id: openshift
   url: https://cpd-cpd-instance.itzroks-663002388p-n5rkp2-6ccd7f378ae819553d37d5f2ee142bd6-0000.au-syd.containers.appdomain.cloud
-  version: '4.6'
+  version: '4.5'
 
 ## Option 2) for CPD as a service provided by https://dataplatform.cloud.ibm.com/
 ## A good learning video in: https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/ml-samples-overview.html
