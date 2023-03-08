@@ -9,6 +9,7 @@ import subprocess
 # output = subprocess.run(["pip3", "install", "ibm-watson-machine-learning", "--upgrade"], capture_output=True, text=True).stdout
 # print(output)
 
+
 import os
 import warnings
 import json
@@ -95,7 +96,7 @@ def convert_to_python(sas_code, params_generate, tokenizer, model):
 # Users can define their own output, as long as it can be processed by their own applications.
 def your_own_process(input_json):
     cache_dir="./tmp_cache"
-    ckpt_load = "../ckpt_step_999"
+    ckpt_load = "/mnts/model/ckpt_step_999"
     do_sample=False
     temperature=0.2
     top_p=0.95
