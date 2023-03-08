@@ -5,7 +5,7 @@
 wml_credentials:
   # Method 1) username and password
   username: admin
-  password: DFjUyZiekSiK
+  password: <password>
 
   # Method 2) using access_token instead of username/password
   # how to generate access_token, refer to:
@@ -39,7 +39,7 @@ wml_credentials:
 #  url: https://jp-tok.ml.cloud.ibm.com
 #
 #  # Authentication: https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/ml-authentication.html
-#  apikey: mPhmEnNRY4MAKwCjtKNItdFo2NgbVwiJhb8GjZhubdsafd
+#  apikey: <api-key>
 
 prj_info:
   code_dir: ../code_example_to_be_deployed
