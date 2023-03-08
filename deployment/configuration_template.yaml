@@ -4,8 +4,8 @@
 ## Option 1) for CPD as platform
 wml_credentials:
   # Method 1) username and password
-  username: jbtang@au1.ibm.com
-  password: yourpassword
+  username: admin
+  password: DFjUyZiekSiK
 
   # Method 2) using access_token instead of username/password
   # how to generate access_token, refer to:
@@ -23,8 +23,8 @@ wml_credentials:
   # "apikey": api_key
 
   instance_id: openshift
-  url: https://dse-cpd45-cluster1.cpolab.ibm.com/
-  version: '4.5'
+  url: https://cpd-cpd-instance.itzroks-663002388p-n5rkp2-6ccd7f378ae819553d37d5f2ee142bd6-0000.au-syd.containers.appdomain.cloud
+  version: '4.6'
 
 ## Option 2) for CPD as a service provided by https://dataplatform.cloud.ibm.com/
 ## A good learning video in: https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/ml-samples-overview.html
@@ -43,7 +43,7 @@ wml_credentials:
 
 prj_info:
   code_dir: ../code_example_to_be_deployed
-  main_file: main_no_input.py
+  main_file: main_with_input_output.py
 
 deployment_info:
   # self-defined function name
@@ -53,7 +53,7 @@ deployment_info:
   # CPD3.5: https://www.ibm.com/docs/en/cloud-paks/cp-data/3.5.0?topic=functions-deployment-spaces#create
   # CPD4.0: https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=spaces-creating-deployment
   # CPD4.5: https://www.ibm.com/docs/en/cloud-paks/cp-data/4.5.x?topic=spaces-creating-deployment
-  space_id: fb22386d-ec8e-4b60-a6a6-52651f9c0960
+  space_id: 81b0b2d2-37b3-448c-a2dd-ad5c76459f30
 
   # True: replace deployment if same deployment name has been found
   # False: quit the deployment if same deployment name has been found
@@ -72,7 +72,7 @@ deployment_info:
   # ML 	4 CPU and 32 GB RAM
   # L 	8 CPU and 32 GB RAM
   # XL 	16 CPU and 64 GB RAM
-  hardware_spec: S
+  hardware_spec: M
 
   # enable scalability when multiple nodes are needed
   num_nodes: 1
@@ -80,7 +80,7 @@ deployment_info:
   # Define runtime. Must have '' in the string.
   # For cpd3.5, it can be: 'default_py3.7'
   # For cpd4.x, it can be: 'runtime-22.1-py3.9'
-  runtime: 'runtime-22.1-py3.9'
+  runtime: 'codegen-transformers'
 
   # if enable_stdout is False, no stdout info will be shown during a successful online/batch job execution
   # for online application, we may want to disable the stdout to reduce the unnecessary traffic
@@ -89,11 +89,11 @@ deployment_info:
 
 #  If no smtp email function, please either comment out whole below section,
 #  or set "False" to "send_email_when_successful" and "send_email_when_fail"
-email_setting:
-  send_email_when_successful: True # True, False. Setting "False" if not want to receive email
-  send_email_when_fail: True # True, False. Setting "False" if not want to receive email
-  smtp_server: ap.relay.ibm.com
-  sender: jbtang@au1.ibm.com
-  receivers: ['jbtang@au1.ibm.com', 'bennytang2008@gmail.com']
+#email_setting:
+ # send_email_when_successful: True # True, False. Setting "False" if not want to receive email
+ # send_email_when_fail: True # True, False. Setting "False" if not want to receive email
+ # smtp_server: ap.relay.ibm.com
+ # sender: 
+ # receivers: ['jbtang@au1.ibm.com', 'bennytang2008@gmail.com']
 
 
